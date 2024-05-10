@@ -53,10 +53,10 @@ def random_artists(
             chose_artists += f"{artist},"
 
     if year_2023:
-        chose_artists += "year 2023"
+        chose_artists += "year 2023,"
 
-    return f"{format_str(chose_artists)}, {format_str(prompt)}", format_str(
-        chose_artists
+    return f"{format_str(str(chose_artists))}, {format_str(str(prompt))}", format_str(
+        str(chose_artists)
     )
 
 
@@ -88,6 +88,8 @@ def generate_img(
         prompt = random.choice(prompt_list)
         if str(prompt).endswith(".txt"):
             prompt = read_txt(prompt)
+        else:
+            prompt = ""
     prompt, artists = random_artists(
         prompt,
         random_weight,
