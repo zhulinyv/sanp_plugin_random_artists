@@ -43,10 +43,10 @@ def random_artists(
                 artist = symbol[0] * num + artist + symbol[1] * num
             elif lower_weight:
                 if random.random() < medium:
-                    artist = "[" * num + artist + "]"
+                    artist = "[" * num + artist + "]" * num
             elif higher_weight:
                 if random.random() < medium:
-                    artist = "{" * num + artist + "}"
+                    artist = "{" * num + artist + "}" * num
             else:
                 pass
 
