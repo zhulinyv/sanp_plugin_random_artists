@@ -1,6 +1,6 @@
 import gradio as gr
 
-from plugins.t2i.sanp_plugin_random_artists.utils import generate_img
+from plugins.t2i.sanp_plugin_random_artists.utils import gen_script, generate_img
 from utils.utils import open_folder, return_random
 
 
@@ -16,6 +16,7 @@ def plugin():
                 )
             with gr.Column(scale=1):
                 folder = gr.Textbox("./output/i2i", visible=False)
+                stand_alone = gr.Button("生成独立脚本")
                 open_folder_ = gr.Button("打开保存目录")
                 open_folder_.click(open_folder, inputs=folder)
                 generate = gr.Button("开始生成")
@@ -137,5 +138,32 @@ def plugin():
                 min_weights,
             ],
             outputs=[image, otp_artists],
+        )
+        stand_alone.click(
+            gen_script,
+            inputs=[
+                path,
+                random_from_path,
+                prompt,
+                negative,
+                scale,
+                steps,
+                resolution,
+                sampler,
+                noise_schedule,
+                sm,
+                sm_dyn,
+                seed,
+                random_weight,
+                year_2023,
+                artist_pref,
+                lower_weight,
+                higher_weight,
+                max_artists,
+                max_weights,
+                min_artists,
+                min_weights,
+            ],
+            outputs=None,
         )
         stop.click(None, None, None, cancels=[cancle])

@@ -157,3 +157,36 @@ def generate_img(
     sleep_for_cool(env.t2i_cool_time - 6, env.t2i_cool_time + 6)
 
     return saved_path, artists
+
+
+def gen_script(*args):
+    with open("stand_alone_scripts.py", "w", encoding="utf-8") as script:
+        script.write(
+            f"""from plugins.t2i.sanp_plugin_random_artists.utils import generate_img
+
+while 1:
+    generate_img(
+        "{args[0]}",
+        {args[1]},
+        "{args[2]}",
+        "{args[3]}",
+        {args[4]},
+        {args[5]},
+        "{args[6]}",
+        "{args[7]}",
+        "{args[8]}",
+        {args[9]},
+        {args[10]},
+        "{args[11]}",
+        {args[12]},
+        {args[13]},
+        {args[14]},
+        {args[15]},
+        {args[16]},
+        {args[17]},
+        {args[18]},
+        {args[19]},
+        {args[20]},
+    )
+"""
+        )
