@@ -154,7 +154,7 @@ def generate_img(
 
     saved_path = save_image(generate_image(json_for_t2i), "t2i", seed, "None", "None")
 
-    sleep_for_cool(env.t2i_cool_time - 6, env.t2i_cool_time + 6)
+    sleep_for_cool(env.t2i_cool_time - 3, env.t2i_cool_time + 3)
 
     return saved_path, artists
 

@@ -30,7 +30,7 @@ def plugin():
                     )
                 with gr.Row():
                     scale = gr.Slider(0, 10, 5, step=0.1, label="提示词相关性")
-                    steps = gr.Slider(0, 28, 28, step=1, label="采样步数")
+                    steps = gr.Slider(0, 50, 28, step=1, label="采样步数")
                 resolution = gr.Dropdown(
                     ["随机", "832x1216", "1216x832", "1024x1024"],
                     value="随机",
