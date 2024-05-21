@@ -16,6 +16,18 @@ from utils.utils import (
 )
 
 
+def generate_random_str(randomlength):
+    """
+    生成一个指定长度的随机字符串
+    """
+    random_str = ""
+    base_str = "ABCDEFGHIGKLMNOPQRSTUVWXYZabcdefghigklmnopqrstuvwxyz0123456789"
+    length = len(base_str) - 1
+    for i in range(randomlength):
+        random_str += base_str[random.randint(0, length)]
+    return random_str
+
+
 def random_artists(
     prompt,
     random_weight,
@@ -143,16 +155,22 @@ def generate_img(
     json_for_t2i["parameters"]["noise_schedule"] = noise_schedule
 
     if seed == "-1":
-        seed = random.randint(1000000000, 9999999999)
+        seed_ = random.randint(1000000000, 9999999999)
     else:
-        seed = int(seed)
-    json_for_t2i["parameters"]["seed"] = seed
+        seed_ = int(seed)
+    json_for_t2i["parameters"]["seed"] = seed_
 
     json_for_t2i["parameters"]["negative_prompt"] = negative
 
     logger.debug(json_for_t2i)
 
-    saved_path = save_image(generate_image(json_for_t2i), "t2i", seed, "None", "None")
+    saved_path = save_image(
+        generate_image(json_for_t2i),
+        "t2i",
+        seed_ if seed == "-1" else generate_random_str(10),
+        "None",
+        "None",
+    )
 
     sleep_for_cool(env.t2i_cool_time - 3, env.t2i_cool_time + 3)
 
