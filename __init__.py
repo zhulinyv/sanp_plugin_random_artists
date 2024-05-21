@@ -6,6 +6,9 @@ from utils.utils import open_folder, return_random
 
 def plugin():
     with gr.Tab("画风生成"):
+        gr.Markdown(
+            "> 单画师文件在 ./plugins/t2i/sanp_plugin_random_artists/artists.json"
+        )
         with gr.Row():
             with gr.Column(scale=4):
                 prompt = gr.Textbox("", label="固定提示词", lines=3)
