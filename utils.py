@@ -67,7 +67,7 @@ def random_artists(
     if year_2023:
         chose_artists += "year 2023,"
 
-    return f"{format_str(str(chose_artists))}, {format_str(str(prompt))}", format_str(
+    return f"{format_str(str(prompt))}, {format_str(str(chose_artists))}", format_str(
         str(chose_artists)
     )
 
