@@ -18,7 +18,7 @@ def plugin():
                     lines=2,
                 )
             with gr.Column(scale=1):
-                folder = gr.Textbox("./output/i2i", visible=False)
+                folder = gr.Textbox("./output/t2i", visible=False)
                 stand_alone = gr.Button("生成独立脚本")
                 open_folder_ = gr.Button("打开保存目录")
                 open_folder_.click(open_folder, inputs=folder)
