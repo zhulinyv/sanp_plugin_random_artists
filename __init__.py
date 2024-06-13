@@ -1,3 +1,5 @@
+from pathlib import Path
+
 import gradio as gr
 
 from plugins.t2i.sanp_plugin_random_artists.utils import gen_script, generate_img
@@ -18,7 +20,7 @@ def plugin():
                     lines=2,
                 )
             with gr.Column(scale=1):
-                folder = gr.Textbox("./output/t2i", visible=False)
+                folder = gr.Textbox(Path("./output/t2i"), visible=False)
                 stand_alone = gr.Button("生成独立脚本")
                 open_folder_ = gr.Button("打开保存目录")
                 open_folder_.click(open_folder, inputs=folder)
