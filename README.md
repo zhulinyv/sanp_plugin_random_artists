@@ -22,7 +22,9 @@
 
 ## 💿 安装
 
-在[主体项目](https://github.com/zhulinyv/Semi-Auto-NovelAI-to-Pixiv) `plugin\t2i` 目录下直接克隆本项目
+- 方法1. 在插件商店粘贴本插件名字(sanp_plugin_random_artists)并点击安装
+
+- 方法2. 在[主体项目](https://github.com/zhulinyv/Semi-Auto-NovelAI-to-Pixiv) `plugins\t2i` 目录下直接克隆本项目
 
 ## 🔧 配置
 
