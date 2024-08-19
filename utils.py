@@ -179,23 +179,30 @@ def generate_img(
 def gen_script(*args):
     with open("stand_alone_scripts.py", "w", encoding="utf-8") as script:
         script.write(
-            f"""from plugins.t2i.sanp_plugin_random_artists.utils import generate_img
+            f"""from loguru import logger
+
+from plugins.t2i.sanp_plugin_random_artists.utils import generate_img
+
+times = 0
 
 while 1:
+    times += 1
+    info = "正在生成第 " + str(times) + " 张图片..."
+    logger.info(info)
     generate_img(
         "{args[0]}",
         {args[1]},
         \"\"\"{args[2]}\"\"\",
         \"\"\"{args[3]}\"\"\",
-        {args[4]},
+        "{args[4]}",
         {args[5]},
-        "{args[6]}",
+        {args[6]},
         "{args[7]}",
         "{args[8]}",
-        {args[9]},
+        "{args[9]}",
         {args[10]},
-        "{args[11]}",
-        {args[12]},
+        {args[11]},
+        "{args[12]}",
         {args[13]},
         {args[14]},
         {args[15]},
@@ -204,6 +211,7 @@ while 1:
         {args[18]},
         {args[19]},
         {args[20]},
+        {args[21]},
     )
 """
         )
