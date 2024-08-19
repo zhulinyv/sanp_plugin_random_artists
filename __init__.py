@@ -13,7 +13,14 @@ def plugin():
         )
         with gr.Row():
             with gr.Column(scale=4):
-                prompt = gr.Textbox("", label="固定提示词", lines=3)
+                with gr.Row():
+                    prompt = gr.Textbox("", label="固定提示词", lines=3, scale=4)
+                    position = gr.Radio(
+                        ["最前面", "最后面"],
+                        value="最后面",
+                        label="画风串追加位置",
+                        scale=1,
+                    )
                 negative = gr.Textbox(
                     "nsfw, lowres, {bad}, error, fewer, extra, missing, worst quality, jpeg artifacts, bad quality, watermark, unfinished, displeasing, chromatic aberration, signature, extra digits, artistic error, username, scan, [abstract],",
                     label="负面提示词",
@@ -96,6 +103,7 @@ def plugin():
                 random_from_path,
                 prompt,
                 negative,
+                position,
                 scale,
                 steps,
                 resolution,

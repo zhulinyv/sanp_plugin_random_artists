@@ -19,6 +19,7 @@ from utils.utils import (
 
 def random_artists(
     prompt,
+    position,
     random_weight,
     year_2023,
     artist_pref,
@@ -56,9 +57,16 @@ def random_artists(
     if year_2023:
         chose_artists += "year 2023,"
 
-    return f"{format_str(str(prompt))}, {format_str(str(chose_artists))}", format_str(
-        str(chose_artists)
-    )
+    if position == "最后面":
+        return (
+            f"{format_str(str(prompt))}, {format_str(str(chose_artists))}",
+            format_str(str(chose_artists)),
+        )
+    elif position == "最前面":
+        return (
+            f"{format_str(str(chose_artists))}, {format_str(str(prompt))}",
+            format_str(str(chose_artists)),
+        )
 
 
 def generate_img(
@@ -66,6 +74,7 @@ def generate_img(
     random_from_path,
     prompt,
     negative,
+    position,
     scale,
     steps,
     resolution,
@@ -93,6 +102,7 @@ def generate_img(
             prompt = ""
     prompt, artists = random_artists(
         prompt,
+        position,
         random_weight,
         year_2023,
         artist_pref,
