@@ -215,3 +215,4 @@ while 1:
     )
 """
         )
+        logger.success("生成成功, 运行 run_stand_alone_scripts.bat 即可独立执行该操作")
