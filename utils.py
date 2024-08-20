@@ -34,7 +34,8 @@ def random_artists(
     artists: dict = read_json("./plugins/t2i/sanp_plugin_random_artists/artists.json")
     chose_artists = ""
     for _ in range(random.randint(min_artists, max_artists)):
-        artist = artists[random.choice(list(artists.keys()))]
+        while (artist := artists[random.choice(list(artists.keys()))]) in chose_artists:
+            pass
         if artist_pref:
             artist = f"artist:{artist}"
 
