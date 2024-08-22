@@ -1,9 +1,8 @@
 import random
 
-from loguru import logger
-
 from utils.env import env
 from utils.jsondata import json_for_t2i
+from utils.prepare import logger
 from utils.utils import (
     file_namel2pathl,
     file_path2list,
@@ -180,7 +179,7 @@ def generate_img(
 def gen_script(*args):
     with open("stand_alone_scripts.py", "w", encoding="utf-8") as script:
         script.write(
-            f"""from loguru import logger
+            f"""from utils.prepare import logger
 
 from plugins.t2i.sanp_plugin_random_artists.utils import generate_img
 
