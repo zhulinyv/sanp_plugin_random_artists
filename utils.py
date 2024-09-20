@@ -189,30 +189,33 @@ while 1:
     times += 1
     info = "正在生成第 " + str(times) + " 张图片..."
     logger.info(info)
-    generate_img(
-        "{args[0]}",
-        {args[1]},
-        \"\"\"{args[2]}\"\"\",
-        \"\"\"{args[3]}\"\"\",
-        "{args[4]}",
-        {args[5]},
-        {args[6]},
-        "{args[7]}",
-        "{args[8]}",
-        "{args[9]}",
-        {args[10]},
-        {args[11]},
-        "{args[12]}",
-        {args[13]},
-        {args[14]},
-        {args[15]},
-        {args[16]},
-        {args[17]},
-        {args[18]},
-        {args[19]},
-        {args[20]},
-        {args[21]},
-    )
+    try:
+        generate_img(
+            "{args[0]}",
+            {args[1]},
+            \"\"\"{args[2]}\"\"\",
+            \"\"\"{args[3]}\"\"\",
+            "{args[4]}",
+            {args[5]},
+            {args[6]},
+            "{args[7]}",
+            "{args[8]}",
+            "{args[9]}",
+            {args[10]},
+            {args[11]},
+            "{args[12]}",
+            {args[13]},
+            {args[14]},
+            {args[15]},
+            {args[16]},
+            {args[17]},
+            {args[18]},
+            {args[19]},
+            {args[20]},
+            {args[21]},
+        )
+    except Exception:
+        pass
 """
         )
         logger.success("生成成功, 运行 run_stand_alone_scripts.bat 即可独立执行该操作")
