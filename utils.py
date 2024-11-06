@@ -82,6 +82,8 @@ def generate_img(
     noise_schedule,
     sm,
     sm_dyn,
+    variety,
+    decrisp,
     seed,
     random_weight,
     year_2023,
@@ -147,6 +149,12 @@ def generate_img(
     json_for_t2i["parameters"]["sm"] = sm
     json_for_t2i["parameters"]["sm_dyn"] = sm_dyn
 
+    if variety == "随机":
+        variety = random.choice([False, 19.343056794463642])
+
+    if decrisp == "随机":
+        decrisp = random.choice([True, False])
+
     if noise_schedule == "随机":
         noise_schedule = random.choice(
             ["native", "karras", "exponential", "polyexponential"]
@@ -202,9 +210,9 @@ while 1:
         "{args[9]}",
         {args[10]},
         {args[11]},
-        "{args[12]}",
+        {args[12]},
         {args[13]},
-        {args[14]},
+        "{args[14]}",
         {args[15]},
         {args[16]},
         {args[17]},
@@ -212,6 +220,8 @@ while 1:
         {args[19]},
         {args[20]},
         {args[21]},
+        {args[22]},
+        {args[23]},
     )
 """
         )

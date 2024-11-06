@@ -73,6 +73,13 @@ def plugin():
                         ["随机", True, False], value=False, label="sm_dyn"
                     )
                 with gr.Row():
+                    variety = gr.Dropdown(
+                        ["随机", True, False], value=False, label="variety"
+                    )
+                    decrisp = gr.Dropdown(
+                        ["随机", True, False], value=False, label="decrisp"
+                    )
+                with gr.Row():
                     seed = gr.Textbox("-1", label="随机种子", scale=7)
                     random_button = gr.Button(value="♻️", size="sm", scale=1)
                     random_button.click(return_random, inputs=None, outputs=seed)
@@ -111,6 +118,8 @@ def plugin():
                 noise_schedule,
                 sm,
                 sm_dyn,
+                variety,
+                decrisp,
                 seed,
                 random_weight,
                 year_2023,
@@ -140,6 +149,8 @@ def plugin():
                 noise_schedule,
                 sm,
                 sm_dyn,
+                variety,
+                decrisp,
                 seed,
                 random_weight,
                 year_2023,
@@ -168,6 +179,8 @@ def plugin():
                 noise_schedule,
                 sm,
                 sm_dyn,
+                variety,
+                decrisp,
                 seed,
                 random_weight,
                 year_2023,
