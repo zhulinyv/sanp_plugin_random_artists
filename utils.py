@@ -153,12 +153,13 @@ def generate_img(
         variety = random.choice([None, 19.343056794463642])
     elif variety is True:
         variety = 19.343056794463642
+    else:
+        variety = None
     json_for_t2i["parameters"]["skip_cfg_above_sigma"] = variety
 
     if decrisp == "随机":
-        json_for_t2i["parameters"]["dynamic_thresholding"] = random.choice(
-            [True, False]
-        )
+        decrisp = random.choice([True, False])
+    json_for_t2i["parameters"]["dynamic_thresholding"] = decrisp
 
     if noise_schedule == "随机":
         noise_schedule = random.choice(
