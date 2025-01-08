@@ -149,7 +149,7 @@ def generate_img(
     json_for_t2i["parameters"]["steps"] = steps
 
     if sm == "随机":
-        sm = random.choice([True, False])
+        sm = random.choice([True, False]) if sampler != "ddim_v3" else False
     if sm:
         if sm_dyn == "随机":
             sm_dyn = random.choice([True, False])
@@ -159,9 +159,9 @@ def generate_img(
     json_for_t2i["parameters"]["sm_dyn"] = sm_dyn
 
     if variety == "随机":
-        variety = random.choice([None, 19.343056794463642])
+        variety = random.choice([None, 19])
     elif variety is True:
-        variety = 19.343056794463642
+        variety = 19
     else:
         variety = None
     json_for_t2i["parameters"]["skip_cfg_above_sigma"] = variety
@@ -233,10 +233,17 @@ while 1:
         "{args[7]}",
         "{args[8]}",
         "{args[9]}",
+<<<<<<< HEAD
         {sm},
         {sm_dyn},
         {variety},
         {decrisp},
+=======
+        "{args[10]}",
+        "{args[11]}",
+        "{args[12]}",
+        "{args[13]}",
+>>>>>>> 87e0951ba8c2de3890057b1ebbfb04e7520755b4
         "{args[14]}",
         {args[15]},
         {args[16]},

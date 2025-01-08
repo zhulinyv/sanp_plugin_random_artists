@@ -51,25 +51,25 @@ def plugin():
                 with gr.Row():
                     sampler = gr.Dropdown(
                         ["随机"] + SAMPLER,
-                        value="k_euler",
+                        value="随机",
                         label="采样器",
                     )
                     noise_schedule = gr.Dropdown(
                         ["随机"] + NOISE_SCHEDULE,
-                        value="native",
+                        value="随机",
                         label="噪声计划表",
                     )
                 with gr.Row():
-                    sm = gr.Dropdown(["随机", True, False], value=False, label="sm")
+                    sm = gr.Dropdown(["随机", True, False], value="随机", label="sm")
                     sm_dyn = gr.Dropdown(
-                        ["随机", True, False], value=False, label="sm_dyn"
+                        ["随机", True, False], value="随机", label="sm_dyn"
                     )
                 with gr.Row():
                     variety = gr.Dropdown(
-                        ["随机", True, False], value=False, label="variety"
+                        ["随机", True, False], value="随机", label="variety"
                     )
                     decrisp = gr.Dropdown(
-                        ["随机", True, False], value=False, label="decrisp"
+                        ["随机", True, False], value="随机", label="decrisp"
                     )
                 with gr.Row():
                     seed = gr.Textbox("-1", label="随机种子", scale=7)
