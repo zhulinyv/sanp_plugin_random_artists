@@ -20,6 +20,7 @@ def random_artists(
     prompt,
     position,
     random_weight,
+    year_2022,
     year_2023,
     artist_pref,
     lower_weight,
@@ -54,8 +55,14 @@ def random_artists(
 
             chose_artists += f"{artist},"
 
-    if year_2023:
-        chose_artists += "year 2023,"
+    if year_2022:
+        chose_artists += "year 2022,"
+
+    if "year 2022" in chose_artists:
+        pass
+    else:
+        if year_2023:
+            chose_artists += "year 2023,"
 
     if position == "最后面":
         return (
@@ -86,6 +93,7 @@ def generate_img(
     decrisp,
     seed,
     random_weight,
+    year_2022,
     year_2023,
     artist_pref,
     lower_weight,
@@ -106,6 +114,7 @@ def generate_img(
         prompt,
         position,
         random_weight,
+        year_2022,
         year_2023,
         artist_pref,
         lower_weight,
@@ -165,7 +174,8 @@ def generate_img(
         noise_schedule = random.choice(
             ["native", "karras", "exponential", "polyexponential"]
         )
-    json_for_t2i["parameters"]["noise_schedule"] = noise_schedule
+    if sampler != "ddim_v3":
+        json_for_t2i["parameters"]["noise_schedule"] = noise_schedule
 
     if seed == "-1":
         seed_ = random.randint(1000000000, 9999999999)
@@ -191,6 +201,15 @@ def generate_img(
 
 
 def gen_script(*args):
+    if args[10] == "随机":
+        sm = '"随机"'
+    if args[11] == "随机":
+        sm_dyn = '"随机"'
+    if args[12] == "随机":
+        variety = '"随机"'
+    if args[13] == "随机":
+        decrisp = '"随机"'
+
     with open("stand_alone_scripts.py", "w", encoding="utf-8") as script:
         script.write(
             f"""from utils.prepare import logger
@@ -214,10 +233,10 @@ while 1:
         "{args[7]}",
         "{args[8]}",
         "{args[9]}",
-        {args[10]},
-        {args[11]},
-        {args[12]},
-        {args[13]},
+        {sm},
+        {sm_dyn},
+        {variety},
+        {decrisp},
         "{args[14]}",
         {args[15]},
         {args[16]},
@@ -228,6 +247,7 @@ while 1:
         {args[21]},
         {args[22]},
         {args[23]},
+        {args[24]},
     )
 """
         )

@@ -3,7 +3,7 @@ from pathlib import Path
 import gradio as gr
 
 from plugins.t2i.sanp_plugin_random_artists.utils import gen_script, generate_img
-from utils.utils import open_folder, return_random
+from utils.utils import NOISE_SCHEDULE, SAMPLER, open_folder, return_random
 
 
 def plugin():
@@ -50,20 +50,12 @@ def plugin():
                 )
                 with gr.Row():
                     sampler = gr.Dropdown(
-                        [
-                            "随机",
-                            "k_euler",
-                            "k_euler_ancestral",
-                            "k_dpmpp_2s_ancestral",
-                            "k_dpmpp_2m",
-                            "k_dpmpp_sde",
-                            "ddim_v3",
-                        ],
+                        ["随机"] + SAMPLER,
                         value="k_euler",
                         label="采样器",
                     )
                     noise_schedule = gr.Dropdown(
-                        ["随机", "native", "karras", "exponential", "polyexponential"],
+                        ["随机"] + NOISE_SCHEDULE,
                         value="native",
                         label="噪声计划表",
                     )
@@ -85,6 +77,7 @@ def plugin():
                     random_button.click(return_random, inputs=None, outputs=seed)
                 with gr.Row():
                     random_weight = gr.Checkbox(True, label="随机权重")
+                    year_2022 = gr.Checkbox(True, label="year 2022")
                     year_2023 = gr.Checkbox(True, label="year 2023")
                     artist_pref = gr.Checkbox(True, label="artist: 前缀")
                 with gr.Row():
@@ -122,6 +115,7 @@ def plugin():
                 decrisp,
                 seed,
                 random_weight,
+                year_2022,
                 year_2023,
                 artist_pref,
                 lower_weight,
@@ -153,6 +147,7 @@ def plugin():
                 decrisp,
                 seed,
                 random_weight,
+                year_2022,
                 year_2023,
                 artist_pref,
                 lower_weight,
@@ -183,6 +178,7 @@ def plugin():
                 decrisp,
                 seed,
                 random_weight,
+                year_2022,
                 year_2023,
                 artist_pref,
                 lower_weight,
