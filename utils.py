@@ -150,7 +150,7 @@ def generate_img(
 
     if sm == "随机":
         sm = random.choice([True, False]) if sampler != "ddim_v3" else False
-    if sm:
+    if sm and sampler != "ddim_v3":
         if sm_dyn == "随机":
             sm_dyn = random.choice([True, False])
     else:
