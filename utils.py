@@ -201,14 +201,10 @@ def generate_img(
 
 
 def gen_script(*args):
-    if args[10] == "随机":
-        sm = '"随机"'
-    if args[11] == "随机":
-        sm_dyn = '"随机"'
-    if args[12] == "随机":
-        variety = '"随机"'
-    if args[13] == "随机":
-        decrisp = '"随机"'
+    sm = '"随机"' if args[10] == "随机" else args[10]
+    sm_dyn = '"随机"' if args[11] == "随机" else args[11]
+    variety = '"随机"' if args[12] == "随机" else args[12]
+    decrisp = '"随机"' if args[13] == "随机" else args[13]
 
     with open("stand_alone_scripts.py", "w", encoding="utf-8") as script:
         script.write(
@@ -233,17 +229,10 @@ while 1:
         "{args[7]}",
         "{args[8]}",
         "{args[9]}",
-<<<<<<< HEAD
         {sm},
         {sm_dyn},
         {variety},
         {decrisp},
-=======
-        "{args[10]}",
-        "{args[11]}",
-        "{args[12]}",
-        "{args[13]}",
->>>>>>> 87e0951ba8c2de3890057b1ebbfb04e7520755b4
         "{args[14]}",
         {args[15]},
         {args[16]},
