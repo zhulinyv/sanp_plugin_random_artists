@@ -208,15 +208,19 @@ def gen_script(*args):
 
     with open("stand_alone_scripts.py", "w", encoding="utf-8") as script:
         script.write(
-            f"""from utils.prepare import logger
-
-from plugins.t2i.sanp_plugin_random_artists.utils import generate_img
+            f"""from plugins.t2i.sanp_plugin_random_artists.utils import generate_img
+from utils.env import env
+from utils.prepare import logger
 
 times = 0
+_times = 0
 
-while 1:
-    times += 1
-    info = "正在生成第 " + str(times) + " 张图片..."
+while times + 1 <= env.times_for_scripts:
+    if env.times_for_scripts == 0:
+        _times += 1
+    else:
+        times += 1
+    info = "正在生成第 " + str(_times if env.times_for_scripts == 0 else times) + " 张图片..."
     logger.info(info)
     generate_img(
         "{args[0]}",
