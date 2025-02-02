@@ -156,13 +156,13 @@ def generate_img(
         json_for_t2i["parameters"]["sm"] = sm
         json_for_t2i["parameters"]["sm_dyn"] = sm_dyn
 
-        if variety == "随机":
-            variety = random.choice([None, 19])
-        elif variety is True:
-            variety = 19
-        else:
-            variety = None
-        json_for_t2i["parameters"]["skip_cfg_above_sigma"] = variety
+    if variety == "随机":
+        variety = random.choice([None, 19])
+    elif variety is True:
+        variety = 19
+    else:
+        variety = None
+    json_for_t2i["parameters"]["skip_cfg_above_sigma"] = variety
 
     if decrisp == "随机":
         decrisp = random.choice([True, False])
