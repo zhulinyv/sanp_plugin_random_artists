@@ -1,7 +1,11 @@
 import random
 
 from utils.env import env
-from utils.jsondata import json_for_t2i
+
+if env.model != "nai-diffusion-4-curated-preview":
+    from utils.jsondata import json_for_t2i
+else:
+    from utils.jsondata import json_for_t2i_v4 as json_for_t2i
 from utils.prepare import logger
 from utils.utils import (
     file_namel2pathl,
@@ -56,13 +60,13 @@ def random_artists(
             chose_artists += f"{artist},"
 
     if year_2022:
-        chose_artists += "year 2022,"
+        chose_artists += random.choice(["year 2022,", ""])
 
     if "year 2022" in chose_artists:
         pass
     else:
         if year_2023:
-            chose_artists += "year 2023,"
+            chose_artists += random.choice(["year 2023,", ""])
 
     if position == "最后面":
         return (
@@ -148,23 +152,24 @@ def generate_img(
 
     json_for_t2i["parameters"]["steps"] = steps
 
-    if sm == "随机":
-        sm = random.choice([True, False]) if sampler != "ddim_v3" else False
-    if sm and sampler != "ddim_v3":
-        if sm_dyn == "随机":
-            sm_dyn = random.choice([True, False])
-    else:
-        sm_dyn = False
-    json_for_t2i["parameters"]["sm"] = sm
-    json_for_t2i["parameters"]["sm_dyn"] = sm_dyn
+    if env.model != "nai-diffusion-4-curated-preview":
+        if sm == "随机":
+            sm = random.choice([True, False]) if sampler != "ddim_v3" else False
+        if sm and sampler != "ddim_v3":
+            if sm_dyn == "随机":
+                sm_dyn = random.choice([True, False])
+        else:
+            sm_dyn = False
+        json_for_t2i["parameters"]["sm"] = sm
+        json_for_t2i["parameters"]["sm_dyn"] = sm_dyn
 
-    if variety == "随机":
-        variety = random.choice([None, 19])
-    elif variety is True:
-        variety = 19
-    else:
-        variety = None
-    json_for_t2i["parameters"]["skip_cfg_above_sigma"] = variety
+        if variety == "随机":
+            variety = random.choice([None, 19])
+        elif variety is True:
+            variety = 19
+        else:
+            variety = None
+        json_for_t2i["parameters"]["skip_cfg_above_sigma"] = variety
 
     if decrisp == "随机":
         decrisp = random.choice([True, False])
@@ -184,6 +189,12 @@ def generate_img(
     json_for_t2i["parameters"]["seed"] = seed_
 
     json_for_t2i["parameters"]["negative_prompt"] = negative
+
+    if env.model == "nai-diffusion-4-curated-preview":
+        json_for_t2i["parameters"]["use_coords"] = False
+        json_for_t2i["parameters"]["v4_prompt"]["caption"]["base_caption"] = ""
+        json_for_t2i["parameters"]["v4_prompt"]["use_coords"] = False
+        json_for_t2i["parameters"]["v4_negative_prompt"]["caption"]["base_caption"] = ""
 
     logger.debug(json_for_t2i)
 
