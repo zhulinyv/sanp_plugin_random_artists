@@ -8,6 +8,8 @@ else:
     from utils.jsondata import json_for_t2i_v4 as json_for_t2i
 from utils.prepare import logger
 from utils.utils import (
+    NOISE_SCHEDULE,
+    SAMPLER,
     file_namel2pathl,
     file_path2list,
     format_str,
@@ -138,16 +140,7 @@ def generate_img(
     json_for_t2i["parameters"]["scale"] = scale
 
     if sampler == "随机":
-        sampler = random.choice(
-            [
-                "k_euler",
-                "k_euler_ancestral",
-                "k_dpmpp_2s_ancestral",
-                "k_dpmpp_2m",
-                "k_dpmpp_sde",
-                "ddim_v3",
-            ]
-        )
+        sampler = random.choice(SAMPLER)
     json_for_t2i["parameters"]["sampler"] = sampler
 
     json_for_t2i["parameters"]["steps"] = steps
@@ -176,9 +169,7 @@ def generate_img(
     json_for_t2i["parameters"]["dynamic_thresholding"] = decrisp
 
     if noise_schedule == "随机":
-        noise_schedule = random.choice(
-            ["native", "karras", "exponential", "polyexponential"]
-        )
+        noise_schedule = random.choice(NOISE_SCHEDULE)
     if sampler != "ddim_v3":
         json_for_t2i["parameters"]["noise_schedule"] = noise_schedule
 
