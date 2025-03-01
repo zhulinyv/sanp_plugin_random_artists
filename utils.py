@@ -2,7 +2,7 @@ import random
 
 from utils.env import env
 
-if env.model != "nai-diffusion-4-curated-preview":
+if "nai-diffusion-4" not in env.model:
     from utils.jsondata import json_for_t2i
 else:
     from utils.jsondata import json_for_t2i_v4 as json_for_t2i
