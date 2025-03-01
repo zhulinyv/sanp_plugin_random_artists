@@ -145,7 +145,7 @@ def generate_img(
 
     json_for_t2i["parameters"]["steps"] = steps
 
-    if env.model != "nai-diffusion-4-curated-preview":
+    if "nai-diffusion-4" not in env.model:
         if sm == "随机":
             sm = random.choice([True, False]) if sampler != "ddim_v3" else False
         if sm and sampler != "ddim_v3":
@@ -181,7 +181,7 @@ def generate_img(
 
     json_for_t2i["parameters"]["negative_prompt"] = negative
 
-    if env.model == "nai-diffusion-4-curated-preview":
+    if "nai-diffusion-4" in env.model:
         json_for_t2i["parameters"]["use_coords"] = False
         json_for_t2i["parameters"]["v4_prompt"]["caption"]["base_caption"] = ""
         json_for_t2i["parameters"]["v4_prompt"]["use_coords"] = False
