@@ -183,9 +183,11 @@ def generate_img(
 
     if "nai-diffusion-4" in env.model:
         json_for_t2i["parameters"]["use_coords"] = False
-        json_for_t2i["parameters"]["v4_prompt"]["caption"]["base_caption"] = ""
+        json_for_t2i["parameters"]["v4_prompt"]["caption"]["base_caption"] = prompt
         json_for_t2i["parameters"]["v4_prompt"]["use_coords"] = False
-        json_for_t2i["parameters"]["v4_negative_prompt"]["caption"]["base_caption"] = ""
+        json_for_t2i["parameters"]["v4_negative_prompt"]["caption"][
+            "base_caption"
+        ] = negative
 
     logger.debug(json_for_t2i)
 
