@@ -89,6 +89,7 @@ def generate_img(
     negative,
     position,
     scale,
+    rescale,
     steps,
     resolution,
     sampler,
@@ -138,6 +139,7 @@ def generate_img(
     json_for_t2i["parameters"]["height"] = int(resolution.split("x")[1])
 
     json_for_t2i["parameters"]["scale"] = scale
+    json_for_t2i["parameters"]["cfg_rescale"] = rescale
 
     if sampler == "随机":
         sampler = random.choice(SAMPLER)
