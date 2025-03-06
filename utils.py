@@ -88,10 +88,15 @@ def random_artists(
                 "提示词中不包含 __artists__, 请将 __artists__ 添加到提示词输入框中!"
             )
             return (
-                f"{format_str(str(prompt), format_str(str(chose_artists)))}",
+                "{}, {}".format(
+                    format_str(str(prompt)),
+                    format_str(str(chose_artists)),
+                ),
                 artists_tags,
             )
-        tag = f"{format_str(str(prompt).replace("__artists__", format_str(str(chose_artists))))}"
+        tag = format_str(
+            str(prompt).replace("__artists__", format_str(str(chose_artists)))
+        )
         return tag, artists_tags
 
 
