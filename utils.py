@@ -70,16 +70,29 @@ def random_artists(
         if year_2023:
             chose_artists += random.choice(["year 2023,", ""])
 
+    artists_tags = format_str(str(chose_artists))
+
     if position == "最后面":
         return (
             f"{format_str(str(prompt))}, {format_str(str(chose_artists))}",
-            format_str(str(chose_artists)),
+            artists_tags,
         )
     elif position == "最前面":
         return (
             f"{format_str(str(chose_artists))}, {format_str(str(prompt))}",
-            format_str(str(chose_artists)),
+            artists_tags,
         )
+    elif position == "自定义":
+        if "__artists__" not in str(prompt):
+            logger.error(
+                "提示词中不包含 __artists__, 请将 __artists__ 添加到提示词输入框中!"
+            )
+            return (
+                f"{format_str(str(prompt), format_str(str(chose_artists)))}",
+                artists_tags,
+            )
+        tag = f"{format_str(str(prompt).replace("__artists__", format_str(str(chose_artists))))}"
+        return tag, artists_tags
 
 
 def generate_img(

@@ -14,11 +14,11 @@ def plugin():
         with gr.Row():
             with gr.Column(scale=4):
                 with gr.Row():
-                    prompt = gr.Textbox("", label="固定提示词", lines=3, scale=4)
+                    prompt = gr.Textbox("1girl, loli", label="固定提示词", lines=3, scale=4)
                     position = gr.Radio(
-                        ["最前面", "最后面"],
+                        ["最前面", "最后面", "自定义"],
                         value="最后面",
-                        label="画风串追加位置",
+                        label="画风串追加位置(可使用 __artists__ 自定义位置)",
                         scale=1,
                     )
                 negative = gr.Textbox(
@@ -38,7 +38,7 @@ def plugin():
                 with gr.Row():
                     path = gr.Textbox("./files/prompt", label="提示词文件路径", scale=7)
                     random_from_path = gr.Checkbox(
-                        True, label="从路径抽取提示词", scale=2
+                        False, label="从路径抽取提示词", scale=2
                     )
                 with gr.Row():
                     scale = gr.Slider(0, 10, 5, step=0.1, label="提示词相关性")
