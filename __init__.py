@@ -14,7 +14,9 @@ def plugin():
         with gr.Row():
             with gr.Column(scale=4):
                 with gr.Row():
-                    prompt = gr.Textbox("1girl, loli", label="固定提示词", lines=3, scale=4)
+                    prompt = gr.Textbox(
+                        "1girl, loli", label="固定提示词", lines=3, scale=4
+                    )
                     position = gr.Radio(
                         ["最前面", "最后面", "自定义"],
                         value="最后面",
@@ -80,9 +82,11 @@ def plugin():
                     random_button.click(return_random, inputs=None, outputs=seed)
                 with gr.Row():
                     random_weight = gr.Checkbox(True, label="随机权重")
+                    artist_pref = gr.Checkbox(True, label="artist: 前缀")
+                with gr.Row():
                     year_2022 = gr.Checkbox(True, label="year 2022")
                     year_2023 = gr.Checkbox(True, label="year 2023")
-                    artist_pref = gr.Checkbox(True, label="artist: 前缀")
+                    year_2024 = gr.Checkbox(True, label="year 2024")
                 with gr.Row():
                     lower_weight = gr.Checkbox(True, label="使用 []")
                     higher_weight = gr.Checkbox(True, label="使用 {}")
@@ -121,6 +125,7 @@ def plugin():
                 random_weight,
                 year_2022,
                 year_2023,
+                year_2024,
                 artist_pref,
                 lower_weight,
                 higher_weight,
@@ -154,6 +159,7 @@ def plugin():
                 random_weight,
                 year_2022,
                 year_2023,
+                year_2024,
                 artist_pref,
                 lower_weight,
                 higher_weight,
@@ -186,6 +192,7 @@ def plugin():
                 random_weight,
                 year_2022,
                 year_2023,
+                year_2024,
                 artist_pref,
                 lower_weight,
                 higher_weight,
