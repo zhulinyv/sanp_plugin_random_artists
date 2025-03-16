@@ -239,7 +239,7 @@ from utils.prepare import logger
 times = 0
 _times = 0
 
-while times + 1 <= env.times_for_scripts:
+while (times + 1 <= env.times_for_scripts) or (env.times_for_scripts == 0):
     if env.times_for_scripts == 0:
         _times += 1
     else:
