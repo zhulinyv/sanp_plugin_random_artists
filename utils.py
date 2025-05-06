@@ -183,7 +183,16 @@ def generate_img(
     if variety == "随机":
         variety = random.choice([None, 19])
     elif variety is True:
-        variety = 19
+        variety = (
+            19.343056794463642
+            if "nai-diffusion-4" in env.model
+            and env.model != "nai-diffusion-4-5-curated"
+            else (
+                19
+                if env.model != "nai-diffusion-4-5-curated"
+                else 58 if variety else None
+            )
+        )
     else:
         variety = None
     json_for_t2i["parameters"]["skip_cfg_above_sigma"] = variety
