@@ -88,6 +88,7 @@ def plugin():
                     year_2022 = gr.Checkbox(True, label="year 2022")
                     year_2023 = gr.Checkbox(True, label="year 2023")
                     year_2024 = gr.Checkbox(True, label="year 2024")
+                    year_2025 = gr.Checkbox(True, label="year 2025")
                 with gr.Row():
                     lower_weight = gr.Checkbox(True, label="使用 []")
                     higher_weight = gr.Checkbox(True, label="使用 {}")
@@ -131,6 +132,7 @@ def plugin():
                 year_2022,
                 year_2023,
                 year_2024,
+                year_2025,
                 artist_pref,
                 lower_weight,
                 higher_weight,
@@ -166,6 +168,7 @@ def plugin():
                 year_2022,
                 year_2023,
                 year_2024,
+                year_2025,
                 artist_pref,
                 lower_weight,
                 higher_weight,
@@ -200,6 +203,7 @@ def plugin():
                 year_2022,
                 year_2023,
                 year_2024,
+                year_2025,
                 artist_pref,
                 lower_weight,
                 higher_weight,

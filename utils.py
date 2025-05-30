@@ -30,6 +30,7 @@ def random_artists(
     year_2022,
     year_2023,
     year_2024,
+    year_2025,
     artist_pref,
     lower_weight,
     higher_weight,
@@ -83,6 +84,7 @@ def random_artists(
         [year_2022, "year 2022,"],
         [year_2023, "year 2023,"],
         [year_2024, "year 2024,"],
+        [year_2025, "year 2025,"],
     ]:
         if year[0]:
             year_list.append(year[1])
@@ -140,6 +142,7 @@ def generate_img(
     year_2022,
     year_2023,
     year_2024,
+    year_2025,
     artist_pref,
     lower_weight,
     higher_weight,
@@ -163,6 +166,7 @@ def generate_img(
         year_2022,
         year_2023,
         year_2024,
+        year_2025,
         artist_pref,
         lower_weight,
         higher_weight,
@@ -303,6 +307,7 @@ while (times + 1 <= env.times_for_scripts) or (env.times_for_scripts == 0):
         {args[25]},
         {args[26]},
         {args[27]},
+        {args[28]},
     )
 """
         )
