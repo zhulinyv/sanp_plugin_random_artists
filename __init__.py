@@ -82,6 +82,7 @@ def plugin():
                     random_button.click(return_random, inputs=None, outputs=seed)
                 with gr.Row():
                     random_weight = gr.Checkbox(True, label="随机权重")
+                    new_weight = gr.Checkbox(False, label="使用新版权重")
                     artist_pref = gr.Checkbox(True, label="artist: 前缀")
                 with gr.Row():
                     year_2022 = gr.Checkbox(True, label="year 2022")
@@ -103,6 +104,9 @@ def plugin():
             with gr.Column():
                 otp_artists = gr.Textbox(label="本次随机的画风")
                 image = gr.Image()
+                gr.Markdown(
+                    "关于新版权重, 目前 SANP 采用将括号转化为 冒号的形式, 例如:\n\n `{artist:xxx} -> 1.05::artist:xxx,::,`\n\n `[artist:xxx] -> 0.91::artist:xxx,::,`"
+                )
         cancle = image.change(
             generate_img,
             inputs=[
@@ -123,6 +127,7 @@ def plugin():
                 decrisp,
                 seed,
                 random_weight,
+                new_weight,
                 year_2022,
                 year_2023,
                 year_2024,
@@ -157,6 +162,7 @@ def plugin():
                 decrisp,
                 seed,
                 random_weight,
+                new_weight,
                 year_2022,
                 year_2023,
                 year_2024,
@@ -190,6 +196,7 @@ def plugin():
                 decrisp,
                 seed,
                 random_weight,
+                new_weight,
                 year_2022,
                 year_2023,
                 year_2024,

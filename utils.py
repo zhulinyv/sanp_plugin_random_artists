@@ -26,6 +26,7 @@ def random_artists(
     prompt,
     position,
     random_weight,
+    new_weight,
     year_2022,
     year_2023,
     year_2024,
@@ -50,13 +51,28 @@ def random_artists(
             num = random.randint(min_weights, max_weights)
             if lower_weight and higher_weight:
                 symbol = random.choice([["[", "]"], ["{", "}"]])
-                artist = symbol[0] * num + artist + symbol[1] * num
+                if new_weight:
+                    artist = artist.replace("artist:", "")
+                    if symbol == ["[", "]"]:
+                        artist = f"{round(0.91**num, 2)}::artist:{artist},::,"
+                    else:
+                        artist = f"{round(1.05**num, 2)}::artist:{artist},::,"
+                else:
+                    artist = symbol[0] * num + artist + symbol[1] * num
             elif lower_weight:
                 if random.random() < medium:
-                    artist = "[" * num + artist + "]" * num
+                    if new_weight:
+                        artist = artist.replace("artist:", "")
+                        artist = f"{round(0.91**num, 2)}::artist:{artist},::,"
+                    else:
+                        artist = "[" * num + artist + "]" * num
             elif higher_weight:
                 if random.random() < medium:
-                    artist = "{" * num + artist + "}" * num
+                    if new_weight:
+                        artist = artist.replace("artist:", "")
+                        artist = f"{round(1.05**num, 2)}::artist:{artist},::,"
+                    else:
+                        artist = "{" * num + artist + "}" * num
             else:
                 pass
 
@@ -120,6 +136,7 @@ def generate_img(
     decrisp,
     seed,
     random_weight,
+    new_weight,
     year_2022,
     year_2023,
     year_2024,
@@ -142,6 +159,7 @@ def generate_img(
         prompt,
         position,
         random_weight,
+        new_weight,
         year_2022,
         year_2023,
         year_2024,
@@ -185,12 +203,9 @@ def generate_img(
     elif variety is True:
         variety = (
             19.343056794463642
-            if "nai-diffusion-4" in env.model
-            and env.model != "nai-diffusion-4-5-curated"
+            if "nai-diffusion-4" in env.model and "nai-diffusion-4-5" not in env.model
             else (
-                19
-                if env.model != "nai-diffusion-4-5-curated"
-                else 58 if variety else None
+                19 if "nai-diffusion-4-5" not in env.model else 58 if variety else None
             )
         )
     else:
@@ -287,6 +302,7 @@ while (times + 1 <= env.times_for_scripts) or (env.times_for_scripts == 0):
         {args[24]},
         {args[25]},
         {args[26]},
+        {args[27]},
     )
 """
         )
